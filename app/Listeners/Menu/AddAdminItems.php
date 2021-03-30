@@ -52,6 +52,11 @@ class AddAdminItems
             $menu->route('items.index', trans_choice('general.items', 2), [], 20, ['icon' => 'fa fa-cube']);
         }
 
+        // NF-e
+        if ($user->can('read-common-items')) {
+            $menu->route('nfe.index', trans_choice('nfe::general.name', 2), [], 20, ['icon' => 'fa fa-cube']);
+        }
+
         // Sales
         if ($user->canAny(['read-sales-invoices', 'read-sales-revenues', 'read-sales-customers'])) {
             $menu->dropdown(trim(trans_choice('general.sales', 2)), function ($sub) use ($user, $attr) {
